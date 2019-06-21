@@ -1,6 +1,7 @@
 package app.appsamurai.cartrack
 
 import androidx.test.core.app.ApplicationProvider
+import app.appsamurai.cartrack.sql.DbAccess
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -23,19 +24,19 @@ class LoginTest {
 
     @Test
     fun `Verify user will be able to login with a valid username and valid password`() {
-
+        db.addUser("Chris", "abc123", "ukyo99999@gmail.com")
         val input = "ukyo99999@gmail.com"
 
-        val name = db.user(input)
-        val password = db.password(name)
+        val name = db.getUser(input)
+        val password = db.getPassword(name)
 
-        Assert.assertTrue(name) //if name exist return TRUE
+        Assert.assertTrue(db.isUserExist(name)) //if name exist return TRUE
         Assert.assertEquals("abc123", password)
     }
 
     @After
     fun tearDown() {
-        db.closeDB
+        db.closeDB()
     }
 
 }
