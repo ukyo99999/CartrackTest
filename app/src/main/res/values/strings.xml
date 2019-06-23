@@ -1,3 +1,42 @@
 <resources>
     <string name="app_name">cartrack</string>
+    <string name="input_user">Name</string>
+    <string name="input_password">Password</string>
+    <string name="input_user_hint">Please input User Name</string>
+    <string name="input_password_hint">Please input Password</string>
+    <string name="text_select_country">Country</string>
+    <string name="text_login">Login</string>
+    <string name="text_create_account">Create Account</string>
+    <string name="text_forget_password">Forget Password</string>
+    <string name="description_logo_cartrack">Cartrack logo</string>
+
+    <string-array name="country">
+        <item>South Africa</item>
+        <item>Angola</item>
+        <item>Botswana</item>
+        <item>Kenya</item>
+        <item>Malawi</item>
+        <item>Mozambique</item>
+        <item>Namibia</item>
+        <item>Nigeria</item>
+        <item>Rwanda</item>
+        <item>Swaziland</item>
+        <item>Tanzania</item>
+        <item>Zimbabwe</item>
+
+        <item>Hong Kong</item>
+        <item>Indonesia</item>
+        <item>Malaysia</item>
+        <item>Philippines</item>
+        <item>Singapore</item>
+        <item>Thailand</item>
+        <item>New Zealand</item>
+
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Spain</item>
+        <item>United Arab Emirates</item>
+        <item>USA</item>
+
+    </string-array>
 </resources>

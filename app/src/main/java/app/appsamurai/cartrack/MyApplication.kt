@@ -4,7 +4,6 @@ import android.app.Application
 import android.os.Build
 import com.facebook.stetho.Stetho
 
-
 /**
  * Created by Ukyo on 2019-06-21.
  *
