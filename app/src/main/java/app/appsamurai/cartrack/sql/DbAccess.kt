@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.text.TextUtils
-import android.util.Log
 import app.appsamurai.cartrack.Constant
 
 /**
@@ -22,8 +21,8 @@ class DbAccess(context: Context) {
         db.insert(Constant.DB_TABLE_NAME, null, values)
     }
 
-    fun getUser(input: String): String {
-        var name = ""
+    fun getEmail(input: String): String {
+        var email = ""
         val cursor = db.query(
             Constant.DB_TABLE_NAME, null, Constant.DB_COLUMN_EMAIL + "='" + input + "'",
             null, null, null, null, null
@@ -31,42 +30,38 @@ class DbAccess(context: Context) {
 
         if (cursor.count > 0) {
             cursor.moveToFirst()
-            name = cursor.getString(1)
-            Log.e("getUser", name)
+            email = cursor.getString(3)
             cursor.close()
         }
 
-        return name
+        return email
     }
 
-    fun getPassword(name: String): String? {
+    fun getPassword(email: String): String? {
         var password: String? = ""
         val cursor = db.query(
-            Constant.DB_TABLE_NAME, null, Constant.DB_COLUMN_USER + "='" + name + "'",
+            Constant.DB_TABLE_NAME, null, Constant.DB_COLUMN_EMAIL + "='" + email + "'",
             null, null, null, null, null
         )
 
         if (cursor.count > 0) {
             cursor.moveToFirst()
             password = cursor.getString(2)
-            Log.e("getPassword", password)
             cursor.close()
         }
 
         return password
     }
 
-    fun isUserExist(name: String): Boolean {
+    fun isEmailExist(email: String): Boolean {
         var isExist = false
         val cursor = db.query(
-            Constant.DB_TABLE_NAME, null, Constant.DB_COLUMN_USER + "='" + name + "'",
+            Constant.DB_TABLE_NAME, null, Constant.DB_COLUMN_EMAIL + "='" + email + "'",
             null, null, null, null, null
         )
 
         if (cursor.count > 0) {
             cursor.moveToFirst()
-
-            Log.e("isUserExist",cursor.getString(1))
 
             if (!TextUtils.isEmpty(cursor.getString(1))) {
                 isExist = true

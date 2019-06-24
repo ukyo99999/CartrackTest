@@ -27,10 +27,9 @@ class LoginTest {
         db.addUser("Chris", "abc123", "ukyo99999@gmail.com")
         val input = "ukyo99999@gmail.com"
 
-        val name = db.getUser(input)
-        val password = db.getPassword(name)
+        val password = db.getPassword(input)
 
-        Assert.assertTrue(db.isUserExist(name)) //if name exist return TRUE
+        Assert.assertTrue(db.isEmailExist(input)) //if email exist return TRUE
         Assert.assertEquals("abc123", password)
     }
 
