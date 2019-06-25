@@ -1,11 +1,14 @@
 package app.appsamurai.cartrack
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import app.appsamurai.cartrack.api.user.ApiGetUser
 import app.appsamurai.cartrack.sql.DbAccess
 import kotlinx.android.synthetic.main.activity_login.*
@@ -98,8 +101,31 @@ class LoginActivity : AppCompatActivity() {
         snackbar.show()
     }
 
+    private fun showToast(message: String) {
+        val toast = Toast.makeText(this@LoginActivity, message, Toast.LENGTH_LONG)
+        toast.show()
+    }
+
     private fun loginSuccess() {
-        showSnackbar(getString(R.string.message_login_success))
+        showToast(getString(R.string.message_login_success))
+        gotoNextActivity(this@LoginActivity, MapActivity::class.java, null)
+    }
+
+    /**
+     * Go to next activity
+     *
+     * @param context
+     * @param className
+     * @param bundle
+     */
+    fun gotoNextActivity(context: Context, className: Class<*>, bundle: Bundle?) {
+        val intent = Intent()
+        intent.setClass(context, className)
+
+        if (bundle != null) {
+            intent.putExtras(bundle)
+        }
+        context.startActivity(intent)
     }
 
 }
