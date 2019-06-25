@@ -1,14 +1,21 @@
 <resources>
     <string name="app_name">cartrack</string>
-    <string name="input_user">Name</string>
+    <string name="input_user">Email</string>
     <string name="input_password">Password</string>
-    <string name="input_user_hint">Please input User Name</string>
+    <string name="input_user_hint">Please input Email</string>
     <string name="input_password_hint">Please input Password</string>
     <string name="text_select_country">Country</string>
     <string name="text_login">Login</string>
     <string name="text_create_account">Create Account</string>
     <string name="text_forget_password">Forget Password</string>
     <string name="description_logo_cartrack">Cartrack logo</string>
+    <string name="error_message_empty_email">Please input email</string>
+    <string name="error_message_empty_password">Please input password</string>
+    <string name="error_message_email_format">Email format error</string>
+    <string name="error_message_account_not_exist">Account not exist</string>
+    <string name="error_message_password_not_correct">Password not correct</string>
+    <string name="message_login_success">Login success</string>
+    <string name="message_coming_soon">Coming soon</string>
 
     <string-array name="country">
         <item>South Africa</item>
@@ -23,7 +30,6 @@
         <item>Swaziland</item>
         <item>Tanzania</item>
         <item>Zimbabwe</item>
-
         <item>Hong Kong</item>
         <item>Indonesia</item>
         <item>Malaysia</item>
@@ -31,7 +37,6 @@
         <item>Singapore</item>
         <item>Thailand</item>
         <item>New Zealand</item>
-
         <item>Poland</item>
         <item>Portugal</item>
         <item>Spain</item>
