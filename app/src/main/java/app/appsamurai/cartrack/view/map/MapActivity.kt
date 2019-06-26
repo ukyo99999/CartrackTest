@@ -1,9 +1,10 @@
-package app.appsamurai.cartrack
+package app.appsamurai.cartrack.view.map
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import app.appsamurai.cartrack.R
 import app.appsamurai.cartrack.api.callback.GetUerCallback
 import app.appsamurai.cartrack.api.user.ApiGetUser
 import app.appsamurai.cartrack.datamodel.UserGson
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_map.*
 
 /**
  * Created by Ukyo on 2019-06-25.
@@ -51,6 +53,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GetUerCallback {
 
     override fun onSuccess(users: List<UserGson>) {
         this.users = users
+        setViewpager()
     }
 
     override fun onFail(errorMessage: String) {
@@ -66,6 +69,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GetUerCallback {
     private fun showSnackbar(message: String) {
         val snackbar = Snackbar.make(layout, message, Snackbar.LENGTH_LONG)
         snackbar.show()
+    }
+
+    private fun setViewpager() {
+        val adapter = MapAdapter(supportFragmentManager, this.users)
+        pager.adapter = adapter
+        pager.pageMargin = 100
     }
 
 }

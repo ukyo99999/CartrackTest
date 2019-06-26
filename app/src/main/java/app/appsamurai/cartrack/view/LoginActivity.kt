@@ -1,4 +1,4 @@
-package app.appsamurai.cartrack
+package app.appsamurai.cartrack.view
 
 import android.content.Context
 import android.content.Intent
@@ -9,7 +9,9 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import app.appsamurai.cartrack.R
 import app.appsamurai.cartrack.sql.DbAccess
+import app.appsamurai.cartrack.view.map.MapActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.regex.Pattern
 
