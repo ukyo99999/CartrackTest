@@ -2,6 +2,7 @@ package app.appsamurai.cartrack.api.user
 
 import android.util.Log
 import app.appsamurai.cartrack.api.ApiInterface
+import app.appsamurai.cartrack.api.callback.GetUerCallback
 import app.appsamurai.cartrack.datamodel.UserGson
 import retrofit2.Call
 import retrofit2.Callback
@@ -14,7 +15,7 @@ import java.io.IOException
  */
 class ApiGetUser {
 
-    fun call(token: String?) {
+    fun call(token: String?, callback: GetUerCallback) {
         val call = ApiInterface().createApiCall(IUser::class.java, token).getUserProfile()
 
         call.enqueue(object : Callback<List<UserGson>> {
@@ -25,6 +26,7 @@ class ApiGetUser {
             override fun onResponse(call: Call<List<UserGson>>, response: Response<List<UserGson>>) {
                 if (response.isSuccessful) {
                     Log.d("ApiGetUser", "response successful")
+                    response.body()?.let { callback.onSuccess(it) }
 
                 } else {
                     try {

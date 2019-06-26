@@ -9,7 +9,6 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import app.appsamurai.cartrack.api.user.ApiGetUser
 import app.appsamurai.cartrack.sql.DbAccess
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.regex.Pattern
@@ -38,8 +37,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun logicProcess() {
-        val apiGetUserProfile = ApiGetUser()
-        apiGetUserProfile.call(null)
+
     }
 
     private val clickListener = View.OnClickListener { v ->
@@ -109,6 +107,7 @@ class LoginActivity : AppCompatActivity() {
     private fun loginSuccess() {
         showToast(getString(R.string.message_login_success))
         gotoNextActivity(this@LoginActivity, MapActivity::class.java, null)
+        finish()
     }
 
     /**
