@@ -2,8 +2,9 @@ package app.appsamurai.cartrack.view.map
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
+import android.text.TextUtils
 import app.appsamurai.cartrack.R
 import app.appsamurai.cartrack.api.callback.GetUerCallback
 import app.appsamurai.cartrack.api.user.ApiGetUser
@@ -23,7 +24,7 @@ import kotlinx.android.synthetic.main.activity_map.*
  */
 class MapActivity : AppCompatActivity(), OnMapReadyCallback, GetUerCallback {
     private lateinit var mMap: GoogleMap
-    private val defaultZoom = 6.5f
+    private val defaultZoom = 3f
     private lateinit var users: List<UserGson>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,26 +40,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GetUerCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-        // Move the camera to Taipei
-        val taipei = LatLng(25.034480, 121.564514)
-        mMap.addMarker(MarkerOptions().position(taipei).title("Taipei 101"))
-        mMap.moveCamera(
-            CameraUpdateFactory.newLatLngZoom(
-                taipei,
-                defaultZoom
-            )
-        )
     }
 
     override fun onSuccess(users: List<UserGson>) {
         this.users = users
         setViewpager()
+        moveLocation(0)
     }
 
     override fun onFail(errorMessage: String) {
-        Log.e("onFail", "errorMessage=" + errorMessage)
-        showSnackbar(errorMessage)
+        if (!TextUtils.isEmpty(errorMessage)) {
+            showSnackbar(errorMessage)
+        }
     }
 
     private fun loadApi() {
@@ -75,6 +68,33 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GetUerCallback {
         val adapter = MapAdapter(supportFragmentManager, this.users)
         pager.adapter = adapter
         pager.pageMargin = 100
+        pager.addOnPageChangeListener(pageChangeListener)
+    }
+
+    private val pageChangeListener = object : ViewPager.OnPageChangeListener {
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+        }
+
+        override fun onPageSelected(position: Int) {
+            moveLocation(position)
+        }
+
+        override fun onPageScrollStateChanged(state: Int) {
+
+        }
+    }
+
+    private fun moveLocation(position: Int) {
+        val location =
+            LatLng(users[position].address?.geo?.lat!!.toDouble(), users[position].address?.geo?.lng!!.toDouble())
+        mMap.animateCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                location,
+                defaultZoom
+            )
+        )
+        mMap.addMarker(MarkerOptions().position(location).title(users[position].username))
     }
 
 }

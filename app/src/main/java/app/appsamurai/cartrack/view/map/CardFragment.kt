@@ -29,12 +29,12 @@ class CardFragment : Fragment() {
 
         rootView.textName.text = user?.name
         rootView.textEmail.text = user?.email
-        rootView.textSuite.text = user?.address?.suite
+        rootView.textSuite.text = user?.address?.suite + ","
         rootView.textPhone.text = user?.phone
         rootView.textWeb.text = user?.website
         rootView.textCompanyName.text = user?.company?.name
         rootView.textStreet.text = user?.address?.street
-        rootView.textCity.text = user?.address?.city
+        rootView.textCity.text = user?.address?.city + ","
         rootView.textZipcode.text = user?.address?.zipcode
         rootView.textCompanyCatchPhrase.text = user?.company?.catchPhrase
         rootView.textCompanyBs.text = user?.company?.bs

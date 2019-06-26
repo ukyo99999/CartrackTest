@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,46 +23,37 @@
             android:id="@+id/textEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textName" />
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageMail"
+            app:layout_constraintStart_toEndOf="@+id/imageMail"
+            app:layout_constraintTop_toTopOf="@+id/imageMail" />
 
         <TextView
             android:id="@+id/textSuite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textEmail" />
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageHome"
+            app:layout_constraintStart_toEndOf="@+id/imageHome"
+            app:layout_constraintTop_toTopOf="@+id/imageHome" />
 
         <TextView
             android:id="@+id/textPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textCity" />
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imagePhone"
+            app:layout_constraintStart_toEndOf="@+id/imagePhone"
+            app:layout_constraintTop_toTopOf="@+id/imagePhone" />
 
         <TextView
             android:id="@+id/textWeb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textPhone" />
-
-        <TextView
-            android:id="@+id/textCompanyName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textWeb" />
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageWeb"
+            app:layout_constraintStart_toEndOf="@+id/imageWeb"
+            app:layout_constraintTop_toTopOf="@+id/imageWeb" />
 
         <TextView
             android:id="@+id/textStreet"
@@ -76,39 +68,87 @@
             android:id="@+id/textCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textSuite"
             app:layout_constraintTop_toBottomOf="@+id/textSuite" />
 
         <TextView
             android:id="@+id/textZipcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             app:layout_constraintBottom_toBottomOf="@+id/textCity"
             app:layout_constraintStart_toEndOf="@+id/textCity"
             app:layout_constraintTop_toTopOf="@+id/textCity" />
 
         <TextView
+            android:id="@+id/textCompanyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageCompany"
+            app:layout_constraintStart_toEndOf="@+id/imageCompany"
+            app:layout_constraintTop_toTopOf="@+id/imageCompany" />
+
+        <TextView
             android:id="@+id/textCompanyCatchPhrase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textCompanyName"
             app:layout_constraintTop_toBottomOf="@+id/textCompanyName" />
 
         <TextView
             android:id="@+id/textCompanyBs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textCompanyCatchPhrase"
             app:layout_constraintTop_toBottomOf="@+id/textCompanyCatchPhrase" />
+
+        <ImageView
+            android:id="@+id/imageMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_email"
+            app:layout_constraintStart_toStartOf="@+id/textName"
+            app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+        <ImageView
+            android:id="@+id/imageHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_home"
+            app:layout_constraintStart_toStartOf="@+id/imageMail"
+            app:layout_constraintTop_toBottomOf="@+id/imageMail" />
+
+        <ImageView
+            android:id="@+id/imagePhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_phone"
+            app:layout_constraintStart_toStartOf="@+id/imageHome"
+            app:layout_constraintTop_toBottomOf="@+id/textCity" />
+
+        <ImageView
+            android:id="@+id/imageWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_internet"
+            app:layout_constraintStart_toStartOf="@+id/imagePhone"
+            app:layout_constraintTop_toBottomOf="@+id/imagePhone" />
+
+        <ImageView
+            android:id="@+id/imageCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_company"
+            app:layout_constraintStart_toStartOf="@+id/imageWeb"
+            app:layout_constraintTop_toBottomOf="@+id/imageWeb" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>
