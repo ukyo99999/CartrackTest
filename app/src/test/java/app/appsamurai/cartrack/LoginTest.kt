@@ -1,7 +1,7 @@
 package app.appsamurai.cartrack
 
 import androidx.test.core.app.ApplicationProvider
-import app.appsamurai.cartrack.sql.DbAccess
+import app.appsamurai.cartrack.util.sql.DbAccess
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before

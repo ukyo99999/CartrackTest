@@ -1,4 +1,4 @@
-package app.appsamurai.cartrack.sql
+package app.appsamurai.cartrack.util.sql
 
 import android.content.ContentValues
 import android.content.Context
