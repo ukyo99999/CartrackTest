@@ -57,7 +57,15 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun logicProcess() {
+        addTestUser()
+    }
 
+    /**
+     * Add fake data for test
+     */
+    private fun addTestUser(){
+        val db = DbAccess(this@LoginActivity)
+        db.addUser("Chris", "abc123", "ukyo99999@gmail.com")
     }
 
     private fun doLogin() {
