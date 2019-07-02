@@ -6,9 +6,9 @@ package app.appsamurai.cartrack
  */
 class Constant {
     companion object {
-        val DB_TABLE_NAME = "account"
-        val DB_COLUMN_USER = "user"
-        val DB_COLUMN_PASSWORD = "password"
-        val DB_COLUMN_EMAIL = "email"
+        const val DB_TABLE_NAME = "account"
+        const val DB_COLUMN_USER = "user"
+        const val DB_COLUMN_PASSWORD = "password"
+        const val DB_COLUMN_EMAIL = "email"
     }
 }

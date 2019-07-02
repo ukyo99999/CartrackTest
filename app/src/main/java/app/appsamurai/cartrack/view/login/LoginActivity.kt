@@ -3,8 +3,10 @@ package app.appsamurai.cartrack.view.login
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import app.appsamurai.cartrack.R
+import app.appsamurai.cartrack.util.PreferenceUtil
 import app.appsamurai.cartrack.util.ViewUtil
 import app.appsamurai.cartrack.util.sql.DbAccess
 import app.appsamurai.cartrack.view.BaseActivity
@@ -23,9 +25,7 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun initView() {
-        val countryList =
-            ArrayAdapter.createFromResource(this, R.array.country, android.R.layout.simple_spinner_dropdown_item)
-        spinnerCountry.adapter = countryList
+        setCountrySpinner()
     }
 
     override fun setToolbar() {
@@ -60,12 +60,21 @@ class LoginActivity : BaseActivity() {
         addTestUser()
     }
 
-    /**
-     * Add fake data for test
-     */
-    private fun addTestUser(){
-        val db = DbAccess(this@LoginActivity)
-        db.addUser("Chris", "abc123", "ukyo99999@gmail.com")
+    private fun setCountrySpinner() {
+        val countryList =
+            ArrayAdapter.createFromResource(this, R.array.country, android.R.layout.simple_spinner_dropdown_item)
+        spinnerCountry.adapter = countryList
+        spinnerCountry.setSelection(PreferenceUtil.itemPosition)
+
+        spinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                PreferenceUtil.itemPosition = position
+            }
+        }
     }
 
     private fun doLogin() {
@@ -112,6 +121,14 @@ class LoginActivity : BaseActivity() {
         ViewUtil.showToast(this@LoginActivity, getString(R.string.message_login_success))
         ViewUtil.gotoNextActivity(this@LoginActivity, MapActivity::class.java, null)
         finish()
+    }
+
+    /**
+     * Add fake data for test
+     */
+    private fun addTestUser() {
+        val db = DbAccess(this@LoginActivity)
+        db.addUser("Chris", "abc123", "ukyo99999@gmail.com")
     }
 
 }

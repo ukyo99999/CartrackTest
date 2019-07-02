@@ -1,6 +1,10 @@
 package app.appsamurai.cartrack.view.map
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v4.view.ViewPager
 import android.text.TextUtils
 import android.view.View
@@ -8,6 +12,7 @@ import app.appsamurai.cartrack.R
 import app.appsamurai.cartrack.api.callback.GetUerCallback
 import app.appsamurai.cartrack.api.user.ApiGetUser
 import app.appsamurai.cartrack.datamodel.UserGson
+import app.appsamurai.cartrack.util.ValueUtil
 import app.appsamurai.cartrack.util.ViewUtil
 import app.appsamurai.cartrack.view.BaseActivity
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -22,10 +27,13 @@ import kotlinx.android.synthetic.main.activity_map.*
  * Created by Ukyo on 2019-06-25.
  *
  */
+private const val PERMISSION_LOCATION = 0
+
 class MapActivity : BaseActivity(), OnMapReadyCallback, GetUerCallback {
     private lateinit var mMap: GoogleMap
     private val defaultZoom = 3f
     private lateinit var users: List<UserGson>
+    private val permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
 
     override fun layoutId(): Int {
         return R.layout.activity_map
@@ -61,8 +69,29 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, GetUerCallback {
 
     }
 
+    @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+
+        if (!ValueUtil.isPermissionGet(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+            ActivityCompat.requestPermissions(this, permissions, PERMISSION_LOCATION)
+        } else {
+            mMap.isMyLocationEnabled = true
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        when (requestCode) {
+            PERMISSION_LOCATION -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mMap.isMyLocationEnabled = true
+                }
+            }
+
+        }
     }
 
     override fun onSuccess(users: List<UserGson>) {
